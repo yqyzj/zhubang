@@ -1,0 +1,121 @@
+<style>
+/* ========== 顶部导航 ========== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(26, 35, 50, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+.header.scrolled {
+    background: rgba(26, 35, 50, 0.98);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #fff;
+}
+.main-nav {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    padding: 5px 0;
+}
+.main-nav a:hover {
+    color: #d4a843;
+}
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #d4a843;
+    transition: width 0.3s;
+}
+.main-nav a:hover::after {
+    width: 100%;
+}
+.header-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-phone {
+    color: #d4a843;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.header-btn {
+    background: #d4a843;
+    color: #1a2332;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.header-btn:hover {
+    background: #ecc94b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 168, 67, 0.4);
+}
+@media (max-width: 968px) {
+    .main-nav { display: none; }
+    .header-cta { gap: 10px; }
+    .header-phone { font-size: 14px; }
+    .header-btn { padding: 8px 16px; font-size: 13px; }
+}
+</style>
+<!-- 顶部导航 -->
+<header class="header" id="header">
+    <div class="header-inner">
+        <a href="https://www.meiyad.com" class="logo">
+            <img src="https://www.meiyad.com/logoh.png" alt="湖南筑邦企业管理咨询有限公司" style="max-height:38px; width:auto;">
+            <div class="logo-text" style="display:flex; gap:12px; align-items:flex-start;">
+                <span style="font-size:16px; color:#f6e05e; font-weight:bold; letter-spacing:1px;">筑资质</span>
+                <span style="font-size:16px; color:#d4a843; font-weight:bold; letter-spacing:1px;">邦天下</span>
+            </div>
+        </a>
+        <ul class="main-nav">
+            <li><a href="index.html#about">关于我们</a></li>
+            <li><a href="index.html#services">服务项目</a></li>
+            <li><a href="index.html#branches">分公司</a></li>
+            <li><a href="index.html#cases">成功案例</a></li>
+            <li><a href="index.html#contact">联系我们</a></li>
+        </ul>
+        <div class="header-cta">
+            <a href="tel:15774116703" class="header-phone">📞 157-7411-6703</a>
+            <a href="index.html#contact" class="header-btn">免费咨询</a>
+        </div>
+    </div>
+</header>

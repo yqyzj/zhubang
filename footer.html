@@ -1,0 +1,156 @@
+<style>
+/* ========== 页脚 ========== */
+.footer {
+    background: #0d1117;
+    color: rgba(255,255,255,0.8);
+    padding: 80px 0 30px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.footer-brand h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.footer-brand p {
+    font-size: 14px;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin-bottom: 25px;
+}
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.social-link:hover {
+    background: #d4a843;
+    color: #1a2332;
+}
+.footer-links h4 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 25px;
+}
+.footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.footer-links li {
+    margin-bottom: 12px;
+}
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: #d4a843;
+}
+.footer-contact li {
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(212,168,67,0.3);
+    padding-top: 30px;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.7;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@media (max-width: 968px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+</style>
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="footer-grid scroll-animate">
+        <div class="footer-brand">
+            <img src="https://www.meiyad.com/logos.png" alt="湖南筑邦企业管理咨询有限公司" style="height:200px;width:auto;margin-bottom:15px;background:#f0f0f0;padding:20px;border-radius:12px;">
+            <p>专为建筑业企业提供资质服务的一站式服务公司，秉承"客户主导服务、标准主导市场"的理念，努力成为湖南本土建筑业服务品牌标杆。</p>
+            <div class="footer-social">
+                <a href="#" class="social-link">微</a>
+                <a href="#" class="social-link">Q</a>
+                <a href="#" class="social-link">抖</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>资质服务</h4>
+            <ul>
+                <li><a href="zizhi-zongchengbao.html">总承包资质</a></li>
+                <li><a href="zizhi-zhuanyechengbao.html">专业承包资质</a></li>
+                <li><a href="zizhi-laowufenbao.html">劳务分包资质</a></li>
+                <li><a href="zizhi-jiaoyi.html">资质交易服务</a></li>
+                <li><a href="zizhi-anxuzheng.html">安全生产许可证</a></li>
+                <li><a href="zizhi-shengji.html">资质升级服务</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>城市分站</h4>
+            <ul>
+                <li><a href="cs-zizhi.html">长沙资质代办</a></li>
+                <li><a href="yz-zizhi.html">永州资质代办</a></li>
+                <li><a href="hy-zizhi.html">衡阳资质代办</a></li>
+                <li><a href="yy-zizhi.html">岳阳资质代办</a></li>
+                <li><a href="ld-zizhi.html">娄底资质代办</a></li>
+                <li><a href="sy-zizhi.html">邵阳资质代办</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>关于我们</h4>
+            <ul>
+                <li><a href="about-intro.html">公司简介</a></li>
+                <li><a href="about-process.html">服务流程</a></li>
+                <li><a href="about-team.html">团队介绍</a></li>
+                <li><a href="know-changjianwenti.html">常见问题</a></li>
+                <li><a href="case-zongbao.html">成功案例</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>联系我们</h4>
+            <ul class="footer-contact">
+                <li>📞 联系电话 157-7411-6703</li>
+                <li>📍 长沙总部：开福区福元西路96号润和商业广场7栋15001-15002</li>
+                <li>📍 永州分公司：冷水滩区愿景国际广场B座815室</li>
+                <li>🕐 周一至周日 8:00-22:00</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2018-2026 <a href="https://www.meiyad.com/" style="color:rgba(255,255,255,0.5); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">湖南筑邦企业管理咨询有限公司</a> 永州分公司  美逸广告</p>
+    </div>
+</footer>
