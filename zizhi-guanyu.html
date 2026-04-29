@@ -3,121 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>湖南筑邦 - zizhi-biange</title>
-    <meta name="description" content="湖南筑邦企业管理咨询有限公司，专注建筑资质代办服务。">
-    <style>
-        /* 顶部导航 - 与首页一致 */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(26, 35, 50, 0.95);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-        }
-        .header.scrolled {
-            background: rgba(26, 35, 50, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
-        }
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: white;
-        }
-        .main-nav {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-        }
-        .main-nav a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-            padding: 5px 0;
-        }
-        .main-nav a:hover {
-            color: #d4a843;
-        }
-        .header-cta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .header-phone {
-            color: #d4a843;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .header-btn {
-            background: #d4a843;
-            color: #1a2332;
-            padding: 10px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .header-btn:hover {
-            background: #ecc94b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(212, 168, 67, 0.4);
-        }
-
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:"Microsoft YaHei",sans-serif; line-height:1.6; color:#2d3748; background:#f7fafc; }
-        .header { background:rgba(26,35,50,0.95); padding:15px 0; position:fixed; top:0; left:0; right:0; z-index:1000; }
+    <title>湖南筑邦 - 关于湖南筑邦：您的建筑资质一站式管家</title>
+    <meta name="description" content="湖南筑邦企业管理咨询有限公司，专业提供建筑资质代办一站式服务，覆盖总承包、专业承包、劳务分包、资质交易、安许办理，已服务1000+企业。湖南筑邦永州分公司提供本地化服务。">
+    <meta name="keywords" content="湖南筑邦企业管理咨询有限公司, 建筑资质代办, 湖南筑邦, 湖南筑邦永州分公司, 湖南筑邦"
+    <style>* { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:"Microsoft YaHei",sans-serif; line-height:1.8; color:#2d3748; background:#f7fafc; padding-top:80px; }
+        .header { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(26,35,50,0.95); backdrop-filter:blur(10px); padding:15px 0; }
         .header-inner { max-width:1200px; margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; align-items:center; }
         .logo { display:flex; align-items:center; gap:15px; text-decoration:none; color:white; }
-        .logo-icon { width:50px; height:50px; background:linear-gradient(135deg,#d4a843,#ecc94b); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; color:#1a2332; }
-        .logo-text h1 { font-size:20px; color:white; margin-bottom:2px; }
-        .logo-text p { font-size:11px; color:#d4a843; letter-spacing:2px; }
-        .nav { display:flex; gap:30px; list-style:none; }
-        .nav a { color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; }
-        .nav a:hover { color:#d4a843; }
-        .page-hero { background:linear-gradient(135deg,#1a2332,#2c5282); padding:180px 20px 100px; text-align:center; color:white; }
-        .page-hero h2 { font-size:48px; margin-bottom:20px; }
-        .page-hero p { font-size:18px; opacity:0.9; max-width:800px; margin:0 auto; }
-        .page-content { max-width:1200px; margin:0 auto; padding:100px 20px; }
-        .page-content h3 { font-size:28px; color:#1a2332; margin-bottom:20px; }
-        .page-content p { font-size:15px; color:#718096; line-height:1.8; margin-bottom:20px; }
-        .features { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin:40px 0; }
-        .feature-card { background:white; padding:30px; border-radius:16px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
-        .feature-card h4 { font-size:18px; color:#1a2332; margin-bottom:10px; }
-        .feature-card p { font-size:14px; color:#718096; }
-        .cta-section { background:linear-gradient(135deg,#1a2332,#2c5282); padding:80px 20px; text-align:center; color:white; }
-        .cta-section h2 { font-size:36px; margin-bottom:20px; }
-        .cta-section p { font-size:16px; opacity:0.9; margin-bottom:30px; }
+        .main-nav { display:flex; gap:35px; list-style:none; }
+        .main-nav a { color:rgba(255,255,255,0.8); text-decoration:none; font-size:14px; }
+        .main-nav a:hover { color:#d4a843; }
+        .header-cta { display:flex; align-items:center; gap:20px; }
+        .header-phone { color:#d4a843; font-size:16px; font-weight:600; text-decoration:none; }
+        .header-btn { background:#d4a843; color:#1a2332; padding:10px 25px; border-radius:25px; text-decoration:none; font-size:14px; font-weight:600; }
+        .page-hero { background:linear-gradient(135deg,#1a2332,#2c5282); padding:120px 20px 60px; text-align:center; color:white; }
+        .page-hero h2 { font-size:36px; margin-bottom:15px; }
+        .page-content { max-width:900px; margin:0 auto; padding:60px 20px; }
+        .article-meta { color:#718096; font-size:14px; margin-bottom:30px; padding-bottom:20px; border-bottom:1px solid #e2e8f0; }
+        .article-body { font-size:16px; line-height:2; color:#2d3748; }
+        .article-body p { margin-bottom:20px; text-indent:2em; }
+        .cta-section { background:linear-gradient(135deg,#1a2332,#2c5282); padding:60px 20px; text-align:center; color:white; margin-top:60px; }
         .cta-btn { display:inline-block; background:#d4a843; color:#1a2332; padding:15px 40px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:16px; }
         .footer { background:#0d1117; color:rgba(255,255,255,0.8); padding:60px 20px 30px; }
         .footer-inner { max-width:1200px; margin:0 auto; }
-        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
-        .footer h3 { font-size:20px; color:white; margin-bottom:15px; }
-        .footer p { font-size:14px; line-height:1.8; opacity:0.7; }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+        .footer h3, .footer h4 { color:white; margin-bottom:15px; }
         .footer-links { list-style:none; }
         .footer-links li { margin-bottom:10px; }
         .footer-links a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; }
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:13px; opacity:0.5; }
-        @media (max-width:768px) { .nav { display:none; } .features { grid-template-columns:1fr; } .footer-grid { grid-template-columns:1fr; } }
-</style>
-    <meta name="keywords" content="湖南筑邦企业管理咨询有限公司, 建筑资质代办, 湖南筑邦, 湖南筑邦永州分公司, 湖南筑邦"
+        @media (max-width:768px) { .main-nav { display:none; } .footer-grid { grid-template-columns:1fr; } }
+    </style>
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -126,7 +43,8 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-    </script>    <meta property="og:title" content="湖南筑邦 - zizhi-biange">
+    </script>
+    <meta property="og:title" content="湖南筑邦 - 关于湖南筑邦：您的建筑资质一站式管家">
     <meta property="og:description" content="湖南筑邦企业管理咨询有限公司，专业提供建筑资质代办一站式服务，覆盖总承包、专业承包、劳务分包、资质交易、安许办理，已服务1000+企业。湖南筑邦永州分公司提供本地化服务。">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="湖南筑邦企业管理咨询有限公司">
@@ -364,25 +282,43 @@
 </header>
 
 
+
     <section class="page-hero">
-        <h2>资质变更服务</h2>
-        <p>法人、地址、注册资本变更</p>
+        <h2>关于湖南筑邦：您的建筑资质一站式管家</h2>
+        <p>湖南筑邦企业管理咨询有限公司 - 建筑资质一站式管家</p>
     </section>
+
     <div class="page-content">
-        <h3>服务介绍</h3>
-        <p>湖南筑邦企业管理咨询有限公司，品牌创立于2018年，是一家专注于建筑资质代办服务的专业机构。</p>
-        <p>公司秉承"专业的事交给专业的人"的服务理念，致力于为建筑企业提供高效、合规、零风险的资质解决方案。</p>
-        <div class="features">
-            <div class="feature-card"><h4>⚡ 效率高</h4><p>1对1专人全程跟进，让资质办理省时省心</p></div>
-            <div class="feature-card"><h4>🎓 专业强</h4><p>建筑行业服务领域深耕十余年，精准把握政策法规</p></div>
-            <div class="feature-card"><h4>💰 价格优</h4><p>报价内容公开透明，提供严谨、灵活、全面的解决方案</p></div>
+        <div class="article-meta">
+            <span>📅 发布时间：2026年4月</span> | 
+            <span>📝 分类：企业动态</span> | 
+            <span>👀 阅读量：137</span>
+        </div>
+        <div class="article-body">
+        <p style="text-indent:2em; margin-bottom:20px;">在竞争激烈的建筑行业，资质是企业生存与发展的“敲门砖”和“通行证”。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">然而，面对日益收紧的政策红线与繁琐复杂的审批流程，如何高效、合规地获取和维护资质，成为了众多建筑企业面临的棘手难题。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">正是在这样的背景下，湖南筑邦企业管理咨询有限公司应运而生，致力于成为您身边的“建筑资质一站式管家”。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">湖南筑邦旗下品牌“筑邦咨询”创立于2018年，是一家专为建筑业企业提供资质服务的综合性公司。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">自成立以来，我们始终秉持“以客户为导向，合作双赢”的理念，将提升客户服务体验放在首位。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">经过多年的稳健发展，筑邦已凭借专业的服务水平与真诚的服务态度，赢得了超1000家企业客户的深厚信赖，成为了湖南本土建筑服务领域的一支劲旅。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">所谓“一站式”，意味着我们能够为建筑企业提供全生命周期、全链条的资质服务。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">从企业初创期的资质新办与增项，帮助您快速获取市场准入资格；到发展期的资质升级，助您突破瓶颈承接更大规模工程；再到成熟期的资质变更、托管与延期，为您免去后顾之忧；乃至企业转让、重组分立等复杂业务，我们均有专业的团队为您保驾护航。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">此外，资质的“另一半”——安全生产许可证的办理与延期，以及安全ABC考证、九大员考证、特种工考证等人员配套服务，我们同样一应俱全。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">作为“管家”，我们深知责任重大。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">我们不仅仅是代跑腿的办事员，更是企业的战略参谋。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">我们依托丰富的行业经验与自有精英人才库，与主管部门保持着良好的沟通协作，能够精准把握政策法规与审批流程，实现“零风险办理”。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">未来，湖南筑邦将继续倾听市场声音，不断提升服务品质，努力成为湖南本土建筑业服务品牌的标杆。</p>
+        <p style="text-indent:2em; margin-bottom:20px;">选择筑邦，就是选择了一份安心与从容，让我们携手共筑辉煌！</p>
+
         </div>
     </div>
+
     <section class="cta-section">
-        <h2>免费获取资质办理方案</h2>
+        <h2>需要资质办理服务？</h2>
         <p>专业顾问一对一服务，为您量身定制资质办理方案</p>
         <a href="tel:15774116703" class="cta-btn">📞 立即咨询 157-7411-6703</a>
     </section>
+
     <style>
 /* ========== 页脚 ========== */
 .footer {
@@ -640,8 +576,7 @@
 </footer>
 
 
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>LA.init({id:"27IjwzdkWgyY2jKb",ck:"27IjwzdkWgyY2jKb"})</script>
+
 <style>
 /* ========== 右下角悬浮组件 ========== */
 .float-widget{position:fixed;right:30px;bottom:30px;z-index:9999;display:flex;flex-direction:row;gap:2px;align-items:center;}
@@ -685,11 +620,6 @@ document.addEventListener("click",function(e){var qr=document.getElementById("we
 
 </body>
 </html>
-
-
-
-
-
 
 
 
