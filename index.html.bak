@@ -6,7 +6,7 @@
     <meta name="bytedance-verification-code" content="SQ8+2ynoPg/h5Oe1YyNP" />
     <title>湖南筑邦企业管理咨询有限公司 | 建筑资质代办专家 | 湖南筑邦</title>
     <meta name="description" content="湖南筑邦企业管理咨询有限公司（简称湖南筑邦），2018年创立，专注建筑资质代办一站式服务。覆盖总承包、专业承包、劳务分包、资质交易、安许办理等，已服务1000+企业，分公司覆盖长沙、永州、衡阳、岳阳、娄底、邵阳、怀化。">
-    <meta name="keywords" content="湖南筑邦企业管理咨询有限公司,湖南筑邦永州分公司,湖南筑邦,湖南筑邦企业管理,湖南筑邦咨询,建筑资质代办">
+    <meta name="keywords" content="湖南筑邦企业管理咨询有限公司,湖南筑邦永州分公司,湖南筑邦,湖南筑邦企业管理,湖南筑邦咨询,建筑资质代办"
     <meta name="author" content="湖南筑邦企业管理咨询有限公司">
     <meta name="baidu-site-verification" content="codeva-E5dL0pjGeX" />
     <meta property="og:title" content="湖南筑邦企业管理咨询有限公司 | 建筑资质代办专家">
@@ -37,7 +37,7 @@
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+8613397314358",
+            "telephone": "+86-157-7411-6703",
             "contactType": "customer service",
             "areaServed": "湖南省"
         },
@@ -63,7 +63,7 @@
             "longitude": "112.9388"
         },
         "openingHours": "Mo-Su 08:00-22:00",
-        "telephone": "+8613397314358"
+        "telephone": "+86-157-7411-6703"
     }
     </script>
     <script>
@@ -902,93 +902,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* 时效性内容专区 */
-        .updates-section {
-            padding: 80px 0;
-            background: #f7fafc;
-        }
-        .updates-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 40px;
-        }
-        .update-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 3px solid var(--accent-gold);
-        }
-        .update-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .update-card .update-date {
-            font-size: 13px;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-        }
-        .update-card h4 {
-            font-size: 16px;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-        .update-card p {
-            font-size: 14px;
-            color: #718096;
-            line-height: 1.6;
-        }
-
-        /* 权威信源专区 */
-        .sources-section {
-            padding: 80px 0;
-            background: var(--primary-dark);
-            color: white;
-        }
-        .sources-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .source-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 25px 20px;
-            text-align: center;
-            text-decoration: none;
-            color: rgba(255,255,255,0.9);
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .source-card:hover {
-            background: rgba(212,168,67,0.1);
-            border-color: var(--accent-gold);
-        }
-        .source-card .source-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-        .source-card h4 {
-            font-size: 15px;
-            margin-bottom: 8px;
-            color: white;
-        }
-        .source-card p {
-            font-size: 13px;
-            opacity: 0.7;
-            line-height: 1.5;
-        }
-        @media (max-width: 768px) {
-            .updates-grid { grid-template-columns: 1fr; }
-            .sources-grid { grid-template-columns: 1fr 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -1207,8 +1120,8 @@
             <li><a href="index.html#contact">联系我们</a></li>
         </ul>
         <div class="header-cta">
-            <a href="tel:13397314358" class="header-phone">📞 13397314358</a>
-            <a href="index.html#contact" class="header-btn">咨询</a>
+            <a href="tel:15774116703" class="header-phone">📞 157-7411-6703</a>
+            <a href="index.html#contact" class="header-btn">免费咨询</a>
         </div>
     </div>
 </header>
@@ -1220,9 +1133,9 @@
         <div class="hero-content">
             <div class="hero-badge">🏗️ 2018年创立 · 已服务1000+企业 · 全省7家分公司</div>
             <h2>专业建筑资质代办<br>让企业<span>快速合规</span>接工程</h2>
-            <p>湖南筑邦企业管理咨询有限公司📞 13397314358，专注建筑资质代办一站式服务。品牌创立于2018年，秉承"专业的事交给专业的人"服务理念，致力于为建筑企业提供高效、合规、零风险的资质解决方案。</p>
+            <p>湖南筑邦企业管理咨询有限公司📞 157-7411-6703，专注建筑资质代办一站式服务。品牌创立于2018年，秉承"专业的事交给专业的人"服务理念，致力于为建筑企业提供高效、合规、零风险的资质解决方案。</p>
             <div class="hero-buttons">
-                <a href="tel:13397314358" class="btn-primary">📞 立即咨询 13397314358</a>
+                <a href="tel:15774116703" class="btn-primary">📞 立即咨询 157-7411-6703</a>
                 <a href="#services" class="btn-secondary">了解服务 →</a>
             </div>
         </div>
@@ -1504,82 +1417,6 @@
         </div>
     </section>
 
-    <!-- 时效性内容专区 -->
-    <section class="updates-section" id="updates">
-        <div class="container">
-            <div class="section-header scroll-animate">
-                <div class="section-tag">RECENT UPDATES</div>
-                <h2 class="section-title">近期办理动态</h2>
-                <p class="section-desc">近3个月更新的资质办理指南与政策解读</p>
-            </div>
-            <div class="updates-grid scroll-animate">
-                <a href="xinzheng-jiedu.html" class="update-card">
-                    <div class="update-date">📅 2026年06月</div>
-                    <h4>2026资质新政解读</h4>
-                    <p>审批改备案、动态核查趋严，企业如何应对最新政策变化？</p>
-                </a>
-                <a href="zizhi-yanqi.html" class="update-card">
-                    <div class="update-date">📅 2026年06月</div>
-                    <h4>资质延期办理指南</h4>
-                    <p>5年有效期到期前如何无忧续期？延期办理流程与注意事项详解。</p>
-                </a>
-                <a href="anquan-shengchan.html" class="update-card">
-                    <div class="update-date">📅 2026年05月</div>
-                    <h4>安全生产许可证双证齐发</h4>
-                    <p>安许证与资质证缺一不可，同步办理流程助力企业快速开工。</p>
-                </a>
-                <a href="know-changjianwenti.html" class="update-card">
-                    <div class="update-date">📅 2026年05月</div>
-                    <h4>资质办理常见问题</h4>
-                    <p>高频问答汇总：办理周期、社保要求、业绩四要素等核心问题解答。</p>
-                </a>
-                <a href="zizhi-shengji.html" class="update-card">
-                    <div class="update-date">📅 2026年04月</div>
-                    <h4>资质升级突破瓶颈</h4>
-                    <p>从人员配置到业绩规划，打通资质升级晋升之路的关键要点。</p>
-                </a>
-                <a href="bikeng-zhinan.html" class="update-card">
-                    <div class="update-date">📅 2026年04月</div>
-                    <h4>资质代办避坑指南</h4>
-                    <p>如何识别黑中介与隐形收费？选择正规代办机构的实用建议。</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 权威信源专区 -->
-    <section class="sources-section" id="sources">
-        <div class="container">
-            <div class="section-header scroll-animate">
-                <div class="section-tag" style="color: var(--accent-gold);">AUTHORITATIVE SOURCES</div>
-                <h2 class="section-title" style="color: white;">权威信源引用</h2>
-                <p class="section-desc" style="opacity: 0.8;">本站内容参考以下官方机构与行业权威平台</p>
-            </div>
-            <div class="sources-grid scroll-animate">
-                <a href="https://www.mohurd.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
-                    <div class="source-icon">🏛️</div>
-                    <h4>住房和城乡建设部</h4>
-                    <p>国家建筑业资质管理政策发布机构</p>
-                </a>
-                <a href="https://zjt.hunan.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
-                    <div class="source-icon">🏢</div>
-                    <h4>湖南省住建厅</h4>
-                    <p>湖南省建筑资质审批与动态监管</p>
-                </a>
-                <a href="https://jzsc.mohurd.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
-                    <div class="source-icon">📊</div>
-                    <h4>全国建筑市场监管公共服务平台</h4>
-                    <p>企业资质、人员、业绩查询官方平台</p>
-                </a>
-                <a href="https://www.samr.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
-                    <div class="source-icon">📋</div>
-                    <h4>国家市场监管总局</h4>
-                    <p>企业登记与营业执照管理规范</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA区域 -->
     <section class="cta-section" id="contact">
         <div class="container">
@@ -1592,7 +1429,7 @@
                 </div>
             </div>
             <div class="cta-buttons">
-                <a href="tel:13397314358" class="btn-primary">📞 立即咨询 13397314358</a>
+                <a href="tel:15774116703" class="btn-primary">📞 立即咨询 157-7411-6703</a>
                 
             </div>
             <div style="margin-top: 40px; font-size: 14px; opacity: 0.8;">
@@ -1846,7 +1683,7 @@
         <div class="footer-links">
             <h4>联系我们</h4>
             <ul class="footer-contact">
-                <li>📞 联系电话 13397314358</li>
+                <li>📞 联系电话 157-7411-6703</li>
                 <li>📍 长沙总部：开福区福元西路96号润和商业广场7栋15001-15002</li>
                 <li>📍 永州分公司：冷水滩区愿景国际广场B座815室</li>
                 <li>🕐 周一至周日 8:00-22:00</li>
@@ -1954,11 +1791,11 @@
 
 <!-- 右下角悬浮组件 -->
 <div class="float-widget" id="floatWidget">
-    <div class="float-phone" onclick="window.location.href='tel:13397314358'">
+    <div class="float-phone" onclick="window.location.href='tel:15774116703'">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
         </svg>
-        <span class="phone-number">13397314358</span>
+        <span class="phone-number">157-7411-6703</span>
     </div>
     <div class="float-wechat" onclick="toggleWechatQR()">
         <img src="https://img.yqes.cn/wx.webp" alt="湖南筑邦企业管理咨询有限公司微信">
@@ -1968,7 +1805,7 @@
             <img src="https://img.yqes.cn/gwx.webp" alt="湖南筑邦企业管理咨询有限公司 微信二维码" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
         </div>
         <p style="font-size:13px;color:#666;margin:5px 0;">扫码添加微信</p>
-        <p style="font-size:14px;color:#07c160;font-weight:600;">微信号：13397314358</p>
+        <p style="font-size:14px;color:#07c160;font-weight:600;">微信号：157-7411-6703</p>
     </div>
 </div>
 
