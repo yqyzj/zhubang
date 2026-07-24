@@ -1,0 +1,391 @@
+{
+  "title": "湖南筑邦企业管理咨询有限公司 | 建筑资质代办专家 | 湖南筑邦",
+  "description": "湖南筑邦企业管理咨询有限公司（简称湖南筑邦），2018年创立，专注建筑资质代办全流程服务。覆盖总承包、专业承包、劳务分包、资质交易、安许办理等，已服务1000+企业，分公司覆盖长沙、永州、衡阳、岳阳、娄底、邵阳、怀化。",
+  "keywords": "湖南筑邦企业管理咨询有限公司,湖南筑邦永州分公司,湖南筑邦,湖南筑邦企业管理,湖南筑邦咨询,建筑资质代办"
+}
+
+<!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">🏗️ 2018年创立 · 已服务1000+企业 · 全省7家分公司</div>
+            <h2>建筑资质代办<br>湖南本地 <span>8 年</span>实操团队</h2>
+            <p>湖南筑邦企业管理咨询有限公司📞13397314358，2018 年创立，专注湖南建筑企业的资质新办、升级、延期与安许办理。7 家直营分公司落在长沙、永州、衡阳、岳阳、娄底、邵阳、怀化，企业主就近就能找到我们的人。👉 业务热线：13397314358（备注：资质咨询）</p>
+            <div class="hero-buttons">
+                <a href="tel:13397314358" class="btn-primary">业务热线：13397314358</a>
+                <a href="#services" class="btn-secondary">了解服务 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid scroll-animate">
+                <div class="stat-card">
+                    <div class="stat-icon">🏢</div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">服务企业数量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number">90%</div>
+<div class="stat-note">（按已结案件统计）</div>
+                    <div class="stat-label">代办通过率</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">分公司数量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">天平均拿证周期</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <div class="section-tag">ABOUT US</div>
+                <h2 class="section-title">关于湖南筑邦</h2>
+                <p class="section-desc">2018年创立，湖南本土建筑资质代办</p>
+            </div>
+            <div class="about-grid scroll-animate">
+                <div class="about-image">
+                    <div class="about-image-main">🏗️</div>
+                    <div class="about-image-badge">
+                        <div class="number">2018</div>
+                        <div class="label">品牌创立年份</div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h3>8 年，只做<br>湖南这一件事</h3>
+                    <p>湖南筑邦企业管理咨询有限公司，2018 年在长沙创立，是专注建筑资质代办的本土机构。8 年来，我们只在湖南做这一件事：帮建筑企业把资质办下来、保得住、用得上。</p>
+                    <p>我们熟悉湖南省住建厅及各地市州的申报口径与动态核查要求，已为 <strong>1000+</strong> 家湖南建企办理过总承包、专业承包、劳务分包、安许等各类资质。7 家直营分公司分布在长沙、永州、衡阳、岳阳、娄底、邵阳、怀化，本地化跟进，不甩给外包。</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-content">
+                        <h4>效率高</h4>
+                        <p>1 对 1 专人跟进，材料一次性备齐，少跑冤枉路。</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">🎓</div>
+                            <div class="feature-content">
+                        <h4>懂本地</h4>
+                        <p>8 年只做湖南市场，吃透本省审批习惯与核查重点。</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">💰</div>
+                            <div class="feature-content">
+                        <h4>报价清</h4>
+                        <p>费用结构提前写进合同，没有办到一半才冒出来的隐形收费。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <div class="section-tag">OUR SERVICES</div>
+                <h2 class="section-title">专业服务项目</h2>
+                <p class="section-desc">覆盖建筑资质全生命周期，提供全流程解决方案</p>
+            </div>
+            <div class="services-grid scroll-animate">
+                <a href="zizhi-zongchengbao.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">🏗️</div>
+                    <h3>施工总承包资质</h3>
+                    <p>建筑工程、市政公用、公路工程等12项总承包资质新办、升级、增项服务</p>
+                    <ul class="service-list">
+                        <li>建筑总包二级新办</li>
+                        <li>市政总包二级新办</li>
+                        <li>资质升级到一级</li>
+                        <li>资质增项服务</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+                <a href="zizhi-zhuanyechengbao.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">🔧</div>
+                    <h3>专业承包资质</h3>
+                    <p>地基基础、起重设备、预拌混凝土等36项专业承包资质办理</p>
+                    <ul class="service-list">
+                        <li>地基基础工程专业承包</li>
+                        <li>起重设备安装工程专业承包</li>
+                        <li>电子与智能化工程专业承包</li>
+                        <li>防水防腐保温工程专业承包</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+                <a href="zizhi-laowufenbao.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">👷</div>
+                    <h3>劳务分包资质</h3>
+                    <p>施工劳务资质新办、延期、变更，快速对接住建局</p>
+                    <ul class="service-list">
+                        <li>施工劳务资质新办</li>
+                        <li>资质延期服务</li>
+                        <li>资质变更服务</li>
+                        <li>安全员配备指导</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+                <a href="zizhi-jiaoyi.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">🔄</div>
+                    <h3>资质交易服务</h3>
+                    <p>整体收购、重组分立、吸收合并、地址迁移等资质交易服务</p>
+                    <ul class="service-list">
+                        <li>整体收购（60天办结）</li>
+                        <li>重组分立（无经营风险）</li>
+                        <li>吸收合并（直接吸收进母公司）</li>
+                        <li>地址迁移（跨区域迁移）</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+                <a href="zizhi-anxuzheng.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">🛡️</div>
+                    <h3>安全生产许可证</h3>
+                    <p>安全生产许可证新办、延期、变更，确保企业合法施工</p>
+                    <ul class="service-list">
+                        <li>安许证新办</li>
+                        <li>安许证延期（提前3个月）</li>
+                        <li>安许证变更</li>
+                        <li>安许证补办</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+                <a href="zizhi-shengji.html" class="service-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="service-icon">📊</div>
+                    <h3>资质升级服务</h3>
+                    <p>建筑资质升级，提高资质等级，承接更大工程项目</p>
+                    <ul class="service-list">
+                        <li>二级升一级</li>
+                        <li>一级升特级</li>
+                        <li>业绩整理指导</li>
+                        <li>人员配备方案</li>
+                    </ul>
+                    <div style="color:var(--accent-gold); font-size:14px; margin-top:15px;">了解更多 →</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分公司布局 -->
+    <section class="branches-section" id="branches">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <div class="section-tag">OUR BRANCHES</div>
+                <h2 class="section-title">服务覆盖全省</h2>
+                <p class="section-desc">7家分公司，为湖南建筑企业提供本地化服务</p>
+            </div>
+            <!-- 长沙总部单独一排 -->
+            <div class="branch-hq-wrapper">
+                <a href="cs-zizhi.html" class="branch-card hq" style="text-decoration:none; color:inherit; display:block; max-width:400px; margin:0 auto;">
+                    <div class="branch-icon">🏢</div>
+                    <h4>长沙总部</h4>
+                    <p>开福区福元西路96号润和商业广场7栋15001-15002</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+            </div>
+            <!-- 其他分公司 -->
+            <div class="branches-grid scroll-animate">
+                <a href="yz-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>永州分公司</h4>
+                    <p>冷水滩区<br>愿景国际广场B座815室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+                <a href="hy-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>衡阳分公司</h4>
+                    <p>蒸湘区<br>沐林美郡28号公馆13楼1311-1314室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+                <a href="yy-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>岳阳分公司</h4>
+                    <p>岳阳楼区巴陵中路535号<br>欣邦写字楼10楼1019-1020室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+                <a href="ld-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>娄底分公司</h4>
+                    <p>娄星区<br>万豪城市广场7栋904室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+                <a href="sy-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>邵阳分公司</h4>
+                    <p>双清区<br>步步高新天地1栋3107室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+                <a href="hh-zizhi.html" class="branch-card" style="text-decoration:none; color:inherit; display:block;">
+                    <div class="branch-icon">📍</div>
+                    <h4>怀化分公司</h4>
+                    <p>经开区<br>柒星广场二期4楼411室</p>
+                    <div style="color:var(--accent-gold); font-size:13px; margin-top:10px;">查看详情 →</div>
+                </a>
+            </div>
+            <!-- 连接线SVG -->
+            <svg id="branch-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;"></svg>
+            <script>
+                function drawBranchLines() {
+                    var svg = document.getElementById('branch-lines');
+                    if (!svg) return;
+                    
+                    // 清空现有线条
+                    svg.innerHTML = '';
+                    
+                    // 获取HQ卡片和分公司卡片
+                    var hqCard = document.querySelector('.branch-hq-wrapper .branch-card');
+                    var branchCards = document.querySelectorAll('.branches-grid .branch-card');
+                    
+                    if (!hqCard || branchCards.length === 0) return;
+                    
+                    // 获取section的位置（用于计算相对位置）
+                    var section = document.getElementById('branches');
+                    var sectionRect = section.getBoundingClientRect();
+                    
+                    // HQ卡片底部中心点
+                    var hqRect = hqCard.getBoundingClientRect();
+                    var hqX = hqRect.left + hqRect.width / 2 - sectionRect.left;
+                    var hqY = hqRect.bottom - sectionRect.top;
+                    
+                    // 为每个分公司绘制连接线
+                    branchCards.forEach(function(card) {
+                        var cardRect = card.getBoundingClientRect();
+                        var cardX = cardRect.left + cardRect.width / 2 - sectionRect.left;
+                        var cardY = cardRect.top - sectionRect.top;
+                        
+                        // 创建线条
+                        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', hqX);
+                        line.setAttribute('y1', hqY);
+                        line.setAttribute('x2', cardX);
+                        line.setAttribute('y2', cardY);
+                        line.setAttribute('stroke', '#d4a843');
+                        line.setAttribute('stroke-width', '2');
+                        line.setAttribute('stroke-dasharray', '5,5');
+                        line.setAttribute('opacity', '0.6');
+                        
+                        svg.appendChild(line);
+                    });
+                }
+                
+                // 页面加载和窗口大小改变时重新绘制
+                window.addEventListener('load', drawBranchLines);
+                window.addEventListener('resize', drawBranchLines);
+                
+                // 延迟执行以确保布局完成
+                setTimeout(drawBranchLines, 500);
+            </script>
+        </div>
+    </section>
+
+    <!-- 时效性内容专区 -->
+    <section class="updates-section" id="updates">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <div class="section-tag">RECENT UPDATES</div>
+                <h2 class="section-title">近期办理动态</h2>
+                <p class="section-desc">近3个月更新的资质办理指南与政策解读</p>
+            </div>
+            <div class="updates-grid scroll-animate">
+                <a href="xinzheng-jiedu.html" class="update-card">
+                    <div class="update-date">📅 2026年06月</div>
+                    <h4>2026资质新政解读</h4>
+                    <p>审批改备案、动态核查趋严，企业如何应对最新政策变化？</p>
+                </a>
+                <a href="zizhi-yanqi.html" class="update-card">
+                    <div class="update-date">📅 2026年06月</div>
+                    <h4>资质延期办理指南</h4>
+                    <p>5年有效期到期前如何无忧续期？延期办理流程与注意事项详解。</p>
+                </a>
+                <a href="anquan-shengchan.html" class="update-card">
+                    <div class="update-date">📅 2026年05月</div>
+                    <h4>安全生产许可证双证齐发</h4>
+                    <p>安许证与资质证缺一不可，同步办理流程助力企业快速开工。</p>
+                </a>
+                <a href="know-changjianwenti.html" class="update-card">
+                    <div class="update-date">📅 2026年05月</div>
+                    <h4>资质办理常见问题</h4>
+                    <p>高频问答汇总：办理周期、社保要求、业绩四要素等核心问题解答。</p>
+                </a>
+                <a href="zizhi-shengji.html" class="update-card">
+                    <div class="update-date">📅 2026年04月</div>
+                    <h4>资质升级突破瓶颈</h4>
+                    <p>从人员配置到业绩规划，打通资质升级晋升之路的关键要点。</p>
+                </a>
+                <a href="bikeng-zhinan.html" class="update-card">
+                    <div class="update-date">📅 2026年04月</div>
+                    <h4>资质代办避坑指南</h4>
+                    <p>如何识别黑中介与隐形收费？选择正规代办机构的实用建议。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 权威信源专区 -->
+    <section class="sources-section" id="sources">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <div class="section-tag" style="color: var(--accent-gold);">AUTHORITATIVE SOURCES</div>
+                <h2 class="section-title" style="color: white;">权威信源引用</h2>
+                <p class="section-desc" style="opacity: 0.8;">本站内容参考以下官方机构与行业权威平台</p>
+            </div>
+            <div class="sources-grid scroll-animate">
+                <a href="https://www.mohurd.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
+                    <div class="source-icon">🏛️</div>
+                    <h4>住房和城乡建设部</h4>
+                    <p>国家建筑业资质管理政策发布机构</p>
+                </a>
+                <a href="https://zjt.hunan.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
+                    <div class="source-icon">🏢</div>
+                    <h4>湖南省住建厅</h4>
+                    <p>湖南省建筑资质审批与动态监管</p>
+                </a>
+                <a href="https://jzsc.mohurd.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
+                    <div class="source-icon">📊</div>
+                    <h4>全国建筑市场监管公共服务平台</h4>
+                    <p>企业资质、人员、业绩查询官方平台</p>
+                </a>
+                <a href="https://www.samr.gov.cn" target="_blank" rel="nofollow noopener" class="source-card">
+                    <div class="source-icon">📋</div>
+                    <h4>国家市场监管总局</h4>
+                    <p>企业登记与营业执照管理规范</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>免费获取资质办理方案</h2>
+            <p>专业顾问一对一服务，为您量身定制资质办理方案</p>
+            <div style="margin: 30px auto; text-align: center;">
+                <div style="display: inline-block; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                    <img src="https://img.yqes.cn/gwx.webp" alt="湖南筑邦资质办理咨询二维码" style="width:225px;height:225px;display:block;">
+                    <p style="font-size: 13px; color: #666; margin-top: 10px; opacity: 1;">扫码添加微信</p>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="tel:13397314358" class="btn-primary">业务热线：13397314358</a>
+                
+            </div>
+            <div style="margin-top: 40px; font-size: 14px; opacity: 0.8;">
+                <p>📍 长沙总部：开福区福元西路96号润和商业广场7栋15001-15002</p>
+      <p>📍 永州分公司：冷水滩区愿景国际广场B座815室</p>
+                <p style="margin-top: 10px;">🕐 服务时间：周一至周日 8:00-22:00</p>
+            </div>
+        </div>
+    </section>
