@@ -1,0 +1,550 @@
+# -*- coding: utf-8 -*-
+"""
+每周建筑行业新闻 自动发布脚本（固化经验产物）
+流程：克隆/拉取 zhubang 仓库 -> 读取 Markdown 文章 -> 转站点 HTML（基于 xinzheng-jiedu.html 模板）
+     -> 挂到「资讯与指南」栏目 -> 更新 sitemap.html / sitemap.xml -> 提交并推送到 GitHub main 分支。
+
+用法：
+  python3 publish_weekly_news.py <文章.md> --title "<标题>" --date "2026年7月" [--slug hangye-dongtai-2026-7] [--label "7月建筑行业新动向"]
+可选：
+  --repo /workspace/zhubang        本地仓库目录（不存在则自动克隆）
+  --no-push                        只提交到本地，不推送（用于测试）
+  --dry-run                       仅生成 HTML 到 /tmp 并打印，不触动仓库与 git
+依赖：GITHUB_TOKEN 环境变量，或由 github-connector 的 get_token.sh 提供。
+"""
+import argparse
+import os
+import re
+import subprocess
+import sys
+
+REPO_URL = "https://github.com/yqyzj/zhubang.git"
+DEFAULT_BRANCH = "main"
+COLUMN_LABEL = "资讯与指南"          # 发布栏目
+TEMPLATE_PAGE = "xinzheng-jiedu.html"  # 模板来源页（同栏目兄弟页）
+INTERLINK_FROM = "xinzheng-jiedu.html"  # 加相关阅读互链的来源页
+
+# ---------- 1. Markdown -> HTML 正文 ----------
+def convert_markdown(md_path, include_contact=False):
+    md = open(md_path, encoding="utf-8").read()
+    lines = md.split("\n")
+    def bold(t):
+        return re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
+    title = None
+    date = "2026年7月"
+    body = []
+    list_open = False
+    contact_lines = []
+    for raw in lines:
+        line = raw.rstrip("\n")
+        s = line.strip()
+        if not s:
+            continue
+        if s.startswith("# ") and title is None:
+            title = s[2:].strip()
+            continue
+        if re.match(r'^\*\*发布日期', s):
+            m = re.search(r'(\d{4}年\d{1,2}月)', s)
+            if m:
+                date = m.group(1)
+            continue
+        if s.startswith("## "):
+            if list_open:
+                body.append("</ol>"); list_open = False
+            body.append('<h2>%s</h2>' % bold(s[3:].strip()))
+            continue
+        if re.match(r'^\d+\.\s', s):
+            if not list_open:
+                body.append('<ol class="article-list">'); list_open = True
+            item = re.sub(r'^\d+\.\s*', '', s)
+            body.append('<li>%s</li>' % bold(item))
+            continue
+        if s.startswith(">"):
+            if list_open:
+                body.append("</ol>"); list_open = False
+            body.append('<blockquote class="article-note">%s</blockquote>' % bold(s[1:].strip()))
+            continue
+        if s == "---":
+            if list_open:
+                body.append("</ol>"); list_open = False
+            body.append('<hr>')
+            continue
+        if s.startswith("🌐") or s.startswith("📞"):
+            # 网站文章不保留结尾营销块（与用户约定）；搜狐号版本才需要
+            if include_contact:
+                contact_lines.append(s)
+            continue
+        if list_open:
+            body.append("</ol>"); list_open = False
+        body.append('<p style="text-indent:2em; margin-bottom:20px;">%s</p>' % bold(s))
+    if list_open:
+        body.append("</ol>")
+    contact_html = ""
+    if include_contact and contact_lines:
+        items = []
+        for c in contact_lines:
+            if c.startswith("🌐"):
+                url = c.split("：")[-1].strip()
+                items.append('<p>🌐 筑邦建筑资质官网：<a href="%s" target="_blank" rel="noopener">%s</a></p>' % (url, url))
+            elif c.startswith("📞"):
+                phone = c.split("：")[-1].strip()
+                items.append('<p>📞 建筑资质代办咨询热线：<a href="tel:%s">%s</a></p>' % (phone, phone))
+        contact_html = '<div class="article-contact">\n' + "\n".join(items) + '\n</div>'
+    return title, date, "\n".join(body) + ("\n" + contact_html if contact_html else "")
+
+# ---------- 2. 站点 HTML 模板（去掉结尾营销块） ----------
+SHELL = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="bytedance-verification-code" content="SQ8+2ynoPg/h5Oe1YyNP" />
+    <title>__TITLE__</title>
+    <meta name="description" content="__DESC__">
+    <meta name="keywords" content="[湖南筑邦企业管理咨询有限公司, 湖南筑邦, 建筑资质代办, 资质新政解读, 建筑行业动态]">
+    <meta name="author" content="湖南筑邦企业管理咨询有限公司">
+    <meta name="baidu-site-verification" content="codeva-E5dL0pjGeX" />
+    <meta property="og:title" content="__TITLE__">
+    <meta property="og:description" content="__DESC__">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="湖南筑邦企业管理咨询有限公司">
+    <meta property="og:url" content="__CANONICAL__">
+    <meta property="og:image" content="https://img.yqes.cn/logoh.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "湖南筑邦企业管理咨询有限公司",
+        "alternateName": "湖南筑邦",
+        "url": "https://www.meiyad.com/",
+        "logo": "https://img.yqes.cn/logoh.webp",
+        "image": "https://img.yqes.cn/logoh.webp",
+        "description": "专注建筑资质代办全流程服务，覆盖总承包、专业承包、劳务分包、资质交易、安许办理",
+        "founder": { "@type": "Person", "name": "湖南筑邦创始人" },
+        "foundingDate": "2018",
+        "address": { "@type": "PostalAddress", "addressLocality": "长沙市", "addressRegion": "湖南省", "streetAddress": "开福区福元西路96号润和商业广场7栋15001-15002" },
+        "contactPoint": { "@type": "ContactPoint", "telephone": "+8613397314358", "contactType": "customer service", "areaServed": "湖南省" },
+        "sameAs": []
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "湖南筑邦企业管理咨询有限公司",
+        "image": "https://www.meiyad.com/logoh.png",
+        "description": "建筑资质代办专家，提供总承包、专业承包、劳务分包、资质交易、安许证办理等服务",
+        "address": { "@type": "PostalAddress", "addressLocality": "长沙市", "addressRegion": "湖南省", "streetAddress": "开福区福元西路96号润和商业广场7栋15001-15002" },
+        "geo": { "@type": "GeoCoordinates", "latitude": "28.2282", "longitude": "112.9388" },
+        "openingHours": "Mo-Su 08:00-22:00",
+        "telephone": "+8613397314358"
+    }
+    </script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2a956143c72202263eb71c193916aa60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <link rel="preload" as="style" href="/assets/css/tpl-22c4bdd484.css" onload="this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/assets/css/tpl-22c4bdd484.css"></noscript>
+    <link rel="canonical" href="__CANONICAL__">
+    <link rel="sitemap" href="https://www.meiyad.com/sitemap.xml">
+    <meta name="theme-color" content="#c8102e">
+    <link rel="preconnect" href="https://img.yqes.cn" crossorigin>
+    <link rel="preconnect" href="https://hm.baidu.com">
+    <link rel="preconnect" href="https://sdk.51.la">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="__TITLE__">
+    <meta name="twitter:description" content="__DESC__">
+    <meta name="twitter:image" content="https://img.yqes.cn/logoh.webp">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"湖南筑邦企业管理咨询有限公司","url":"https://www.meiyad.com/","potentialAction":{"@type":"SearchAction","target":"https://www.meiyad.com?s={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://www.meiyad.com/"},{"@type":"ListItem","position":2,"name":"__TITLE__","item":"__CANONICAL__"}]}
+    </script>
+
+    <style>
+        .article-list { margin: 0 0 20px 1.4em; }
+        .article-list li { margin-bottom: 12px; line-height: 1.9; }
+        .article-note { border-left: 4px solid #2a5298; background: #f3f7fc; padding: 14px 18px; margin: 0 0 22px; color: #555; border-radius: 0 6px 6px 0; }
+    </style>
+
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+<header class="header" role="banner" id="header">
+    <div class="header-inner">
+        <a href="https://www.meiyad.com" class="logo">
+            <img src="https://img.yqes.cn/logoh.webp" alt="湖南筑邦企业管理咨询有限公司" style="max-height:38px; width:auto;">
+            <div class="logo-text" style="display:flex; gap:12px; align-items:flex-start;">
+                <span style="font-size:16px; color:#ffffff; font-weight:bold; letter-spacing:1px;">筑资质</span>
+                <span style="font-size:16px; color:var(--accent-gold); font-weight:bold; letter-spacing:1px;">邦天下</span>
+            </div>
+        </a>
+        <ul class="main-nav" role="navigation" aria-label="主导航">
+            <li><a href="index.html#about">关于我们</a></li>
+            <li><a href="index.html#services">服务项目</a></li>
+            <li><a href="index.html#branches">分公司</a></li>
+            <li><a href="index.html#cases">成功案例</a></li>
+            <li><a href="index.html#contact">联系我们</a></li>
+        </ul>
+        <div class="header-cta">
+            <a href="tel:13397314358" class="header-phone">📞 13397314358</a>
+            <a href="index.html#contact" class="header-btn">咨询</a>
+        </div>
+    </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<section class="page-hero">
+        <h1>__HERO__</h1>
+        <p>湖南筑邦企业管理咨询有限公司 - 建筑资质全流程管家</p>
+    </section>
+
+    <div class="page-content">
+        <div class="article-meta">
+            <span>📅 发布时间：<time datetime="__DATE__" itemprop="datePublished">__DATE__</time></span> |
+            <span>📝 分类：行业动态</span>
+        </div>
+        <div class="article-body">
+__BODY__
+        </div>
+    </div>
+
+    <!-- CTA区域 -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>免费获取资质办理方案</h2>
+            <p>专业顾问一对一服务，为您量身定制资质办理方案</p>
+            <div style="margin: 30px auto; text-align: center;">
+                <div style="display: inline-block; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                    <img src="https://img.yqes.cn/gwx.webp" alt="湖南筑邦资质办理咨询二维码" style="width:225px;height:225px;display:block;">
+                    <p style="font-size: 13px; color: #666; margin-top: 10px; opacity: 1;">扫码添加微信</p>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="tel:13397314358" class="btn-primary">业务热线：13397314358</a>
+
+            </div>
+            <div style="margin-top: 40px; font-size: 14px; opacity: 0.8;">
+                <p>📍 长沙总部：开福区福元西路96号润和商业广场7栋15001-15002</p>
+      <p>📍 永州分公司：冷水滩区愿景国际广场B座815室</p>
+                <p style="margin-top: 10px;">🕐 服务时间：周一至周日 8:00-22:00</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<section class="cta-section" id="contact">
+    <div class="container">
+        <h2>免费获取资质办理方案</h2>
+        <p>专业顾问一对一服务，为您量身定制资质办理方案</p>
+        <div style="margin: 30px auto; text-align: center;">
+            <div style="display: inline-block; background: white; padding: 20px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                <img src="https://img.yqes.cn/gwx.webp" alt="湖南筑邦微信咨询二维码 - 扫码免费咨询资质办理" style="width: 220px; height: 220px; display: block;" loading="lazy">
+                <p style="font-size: 14px; color: #666; margin-top: 12px; opacity: 1;">📱 扫码添加微信 · 免费咨询</p>
+            </div>
+        </div>
+        <div class="cta-buttons">
+            <a href="tel:13397314358" class="btn-primary">📞 立即咨询 13397314358</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-grid scroll-animate">
+        <div class="footer-brand">
+            <img src="https://img.yqes.cn/logos.webp" alt="湖南筑邦企业管理咨询有限公司" style="height:200px;width:auto;margin-bottom:15px;background:#f0f0f0;padding:20px;border-radius:12px;">
+            <p>专为建筑业企业提供资质服务的全流程服务公司，秉承"客户主导服务、标准主导市场"的理念，努力成为湖南本土建筑业服务的标杆机构。</p>
+            <div class="footer-social">
+                <a href="#" class="social-link">微</a>
+                <a href="#" class="social-link">Q</a>
+                <a href="#" class="social-link">抖</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>资质服务</h4>
+            <ul>
+                <li><a href="zizhi-zongchengbao.html">总承包资质</a></li>
+                <li><a href="zizhi-zhuanyechengbao.html">专业承包资质</a></li>
+                <li><a href="zizhi-laowufenbao.html">劳务分包资质</a></li>
+                <li><a href="zizhi-jiaoyi.html">资质交易服务</a></li>
+                <li><a href="zizhi-anxuzheng.html">安全生产许可证</a></li>
+                <li><a href="zizhi-shengji.html">资质升级服务</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>城市分站</h4>
+            <ul>
+                <li><a href="cs-zizhi.html">长沙资质代办</a></li>
+                <li><a href="yz-zizhi.html">永州资质代办</a></li>
+                <li><a href="hy-zizhi.html">衡阳资质代办</a></li>
+                <li><a href="yy-zizhi.html">岳阳资质代办</a></li>
+                <li><a href="ld-zizhi.html">娄底资质代办</a></li>
+                <li><a href="sy-zizhi.html">邵阳资质代办</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>关于我们</h4>
+            <ul>
+                <li><a href="about-intro.html">公司简介</a></li>
+                <li><a href="about-process.html">服务流程</a></li>
+                <li><a href="about-team.html">团队介绍</a></li>
+                <li><a href="know-changjianwenti.html">常见问题</a></li>
+                <li><a href="case-zongbao.html">成功案例</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>联系我们</h4>
+            <ul class="footer-contact">
+                <li>📞 联系电话 13397314358</li>
+                <li>📍 长沙总部：开福区福元西路96号润和商业广场7栋15001-15002</li>
+                <li>📍 永州分公司：冷水滩区愿景国际广场B座815室</li>
+                <li>🕐 周一至周日 8:00-22:00</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2018-2026 <a href="https://www.meiyad.com/" style="color:rgba(255,255,255,0.5); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">湖南筑邦企业管理咨询有限公司</a>
+        </p>
+    </div>
+</footer>
+
+<div class="float-widget" role="complementary" aria-label="联系悬浮窗" id="floatWidget">
+    <div class="float-phone" onclick="window.location.href='tel:13397314358'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span class="phone-number">13397314358</span>
+    </div>
+    <div class="float-wechat" onclick="toggleWechatQR()">
+        <img src="https://img.yqes.cn/wx.webp" alt="湖南筑邦企业管理咨询有限公司微信">
+    </div>
+    <div class="wechat-qr" id="wechatQR">
+        <div style="width:180px;height:180px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:14px;color:#666;">
+            <img src="https://img.yqes.cn/gwx.webp" alt="湖南筑邦微信咨询二维码 - 扫码免费咨询资质办理" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" loading="lazy">
+        </div>
+        <p style="font-size:13px;color:#666;margin:5px 0;">扫码添加微信</p>
+        <p style="font-size:14px;color:#07c160;font-weight:600;">微信号：13397314358</p>
+    </div>
+</div>
+<script>
+function toggleWechatQR(){document.getElementById("wechatQR").classList.toggle("active");}
+document.addEventListener("click",function(e){var qr=document.getElementById("wechatQR");var btn=document.querySelector(".float-wechat");if(qr&&!qr.contains(e.target)&&btn&&!btn.contains(e.target))qr.classList.remove("active");});
+</script>
+
+<script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+        scrollElements.forEach(el => observer.observe(el));
+        function animateNumber(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 80;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + suffix;
+            }, 20);
+        }
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(el => {
+                        const text = el.textContent;
+                        const match = text.match(/(\d+)/);
+                        if (match) {
+                            const target = parseInt(match[1]);
+                            const suffix = text.replace(match[1], '');
+                            animateNumber(el, target, suffix);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+    </script>
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>LA.init({id:"27IjwzdkWgyY2jKb",ck:"27IjwzdkWgyY2jKb"})</script>
+</body>
+</html>
+"""
+
+def build_html(title, desc, canonical, date, body_html):
+    return (SHELL
+            .replace("__TITLE__", title)
+            .replace("__DESC__", desc)
+            .replace("__CANONICAL__", canonical)
+            .replace("__HERO__", title)
+            .replace("__DATE__", date)
+            .replace("__BODY__", body_html))
+
+# ---------- 3. 仓库准备 ----------
+def ensure_repo(repo_dir):
+    if os.path.isdir(os.path.join(repo_dir, ".git")):
+        subprocess.run(["git", "-C", repo_dir, "pull", "origin", DEFAULT_BRANCH],
+                       check=False, capture_output=True, text=True)
+    else:
+        os.makedirs(os.path.dirname(repo_dir) or ".", exist_ok=True)
+        subprocess.run(["git", "clone", REPO_URL, repo_dir], check=True, capture_output=True, text=True)
+    subprocess.run(["git", "-C", repo_dir, "config", "user.email", "agent@codebuddy.local"], check=False)
+    subprocess.run(["git", "-C", repo_dir, "config", "user.name", "CodeBuddy Agent"], check=False)
+
+def set_remote_token(repo_dir):
+    tok = os.environ.get("GITHUB_TOKEN")
+    if not tok:
+        sh = "/root/.codebuddy/skills/github-connector/scripts/get_token.sh"
+        if os.path.exists(sh):
+            out = subprocess.run(["bash", "-c", "source %s && echo $GITHUB_TOKEN" % sh],
+                                 capture_output=True, text=True)
+            tok = out.stdout.strip()
+    if tok:
+        subprocess.run(["git", "-C", repo_dir, "remote", "set-url", "origin",
+                        "https://oauth2:%s@github.com/yqyzj/zhubang.git" % tok], check=False)
+
+# ---------- 4. 栏目/站点地图更新（幂等） ----------
+def update_sitemap_html(repo_dir, slug, label):
+    p = os.path.join(repo_dir, "sitemap.html")
+    s = open(p, encoding="utf-8").read()
+    if slug in s:
+        return False
+    anchor = '<a href="./xinzheng-jiedu.html">新政解读</a>'
+    newline = '<a href="./%s.html">%s</a>' % (slug, label)
+    s = s.replace(anchor, anchor + "\n                    " + newline, 1)
+    # 更新总页面数统计（抓取 stat-number）
+    m = re.search(r'<div class="stat-number">(\d+)</div>', s)
+    if m:
+        n = int(m.group(1)) + 1
+        s = s.replace('<div class="stat-number">%d</div>' % int(m.group(1)),
+                      '<div class="stat-number">%d</div>' % n, 1)
+    open(p, "w", encoding="utf-8").write(s)
+    return True
+
+def update_sitemap_xml(repo_dir, slug, lastmod):
+    p = os.path.join(repo_dir, "sitemap.xml")
+    s = open(p, encoding="utf-8").read()
+    if slug in s:
+        return False
+    block = ('<url>\n'
+             '    <loc>/%s.html</loc>\n'
+             '    <lastmod>%s</lastmod>\n'
+             '    <changefreq>weekly</changefreq>\n'
+             '    <priority>0.7</priority>\n'
+             '</url>\n' % (slug, lastmod))
+    anchor = '    <loc>/xinzheng-jiedu.html</loc>'
+    s = s.replace(anchor, block + "\n" + anchor, 1)
+    open(p, "w", encoding="utf-8").write(s)
+    return True
+
+def update_interlink(repo_dir, slug, title):
+    p = os.path.join(repo_dir, INTERLINK_FROM)
+    s = open(p, encoding="utf-8").read()
+    if slug in s:
+        return False
+    tag = '<!-- CTA区域 -->'
+    line = ('<p style="text-indent:2em; margin-bottom:20px;">📌 相关阅读：'
+            '<a href="%s.html">%s</a></p>' % (slug, title))
+    s = s.replace(tag, line + "\n        </div>\n    </div>\n\n    " + tag, 1)
+    open(p, "w", encoding="utf-8").write(s)
+    return True
+
+# ---------- 5. 主流程 ----------
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("markdown")
+    ap.add_argument("--title", required=True)
+    ap.add_argument("--date", default=None, help="如 2026年7月")
+    ap.add_argument("--slug", default=None, help="文件名（不含.html），默认按日期生成")
+    ap.add_argument("--label", default=None, help="栏目显示名，默认取标题前12字")
+    ap.add_argument("--repo", default="/workspace/zhubang")
+    ap.add_argument("--no-push", action="store_true")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    title, date_auto, body_html = convert_markdown(args.markdown, include_contact=False)
+    date = args.date or date_auto
+    # 描述
+    desc = ("2026年建筑行业新动向正向解读：筑邦刘英带你看懂政策红利，"
+            "并给出接住机会的实操建议。咨询热线13397314358。")
+    # slug 默认按今天日期，保证每周唯一
+    if not args.slug:
+        import datetime
+        d = datetime.date.today()
+        args.slug = "hangye-dongtai-%d-%d-%d" % (d.year, d.month, d.day)
+    label = args.label or title[:12]
+    canonical = "https://www.meiyad.com/%s.html" % args.slug
+
+    html = build_html(title, desc, canonical, date, body_html)
+
+    if args.dry_run:
+        out = "/tmp/test_article_%s.html" % args.slug
+        open(out, "w", encoding="utf-8").write(html)
+        print("[dry-run] HTML ->", out, "| title:", title, "| date:", date, "| slug:", args.slug)
+        return
+
+    ensure_repo(args.repo)
+    set_remote_token(args.repo)
+
+    page_path = os.path.join(args.repo, "%s.html" % args.slug)
+    open(page_path, "w", encoding="utf-8").write(html)
+    a = update_sitemap_html(args.repo, args.slug, label)
+    b = update_sitemap_xml(args.repo, args.slug, date_iso(args.date or date_auto))
+    c = update_interlink(args.repo, args.slug, title)
+
+    subprocess.run(["git", "-C", args.repo, "add", "-A"], check=True)
+    msg = "每周新闻自动发布：%s（栏目：%s）" % (title, COLUMN_LABEL)
+    subprocess.run(["git", "-C", args.repo, "commit", "-m", msg], check=True)
+    if not args.no_push:
+        set_remote_token(args.repo)
+        subprocess.run(["git", "-C", args.repo, "push", "origin", DEFAULT_BRANCH], check=True)
+    print("发布完成：%s | sitemap.html=%s sitemap.xml=%s interlink=%s" % (page_path, a, b, c))
+
+def date_iso(date_cn):
+    m = re.search(r'(\d{4})年(\d{1,2})月', date_cn)
+    if m:
+        return "%s-%02d-01" % (m.group(1), int(m.group(2)))
+    import datetime
+    return datetime.date.today().isoformat()
+
+if __name__ == "__main__":
+    main()
